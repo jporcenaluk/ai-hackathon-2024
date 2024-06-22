@@ -22,10 +22,37 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  width: 100%;
+}
+
+.header-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #3596B4; /* Matches the rest of the header */
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.logo {
+  padding: 20px;
+  height: 50px; /* Adjust based on your logo's aspect ratio */
+}
+
+.hamburger-menu {
+  padding: 20px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
 }
 
 @keyframes App-logo-spin {
