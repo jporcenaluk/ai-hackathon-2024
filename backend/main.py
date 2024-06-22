@@ -15,3 +15,7 @@ app.add_middleware(
 @app.get("/api/data")
 def read_root():
     return {"message": "Hi Sarah! I'm an app now!"}
+
+@app.get("/api/llm")
+def read_llm():
+    return {"message": "Neato"}
