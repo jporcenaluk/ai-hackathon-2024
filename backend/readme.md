@@ -22,4 +22,4 @@ docker run -d \
   phidata/pgvector:16
 ```
 
-
+curl -X POST http://localhost:5200/ask -H "Content-Type: application/json" -d '{"prompt": "What is the capital of France?"}'
