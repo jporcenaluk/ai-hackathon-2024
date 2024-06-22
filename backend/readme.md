@@ -3,7 +3,7 @@ virtualenv -p python3.10 venv
 
 source venv/bin/activate
 
-pip install phidata ollama lancedb pandas sqlalchemy openai pypdf 
+pip install phidata ollama lancedb pandas sqlalchemy openai pgvector pypdf "psycopg[binary]" sqlalchemy phidata
 
 pip install -U pgvector pypdf "psycopg[binary]" sqlalchemy phidata
 

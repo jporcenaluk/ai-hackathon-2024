@@ -10,10 +10,10 @@ from phi.utils.log import logger
 from assistant import get_rag_assistant  # type: ignore
 
 st.set_page_config(
-    page_title="Hobby Farmer",
+    page_title="Furrows",
     page_icon=":orange_heart:",
 )
-st.title("Hobby Farmer")
+st.title("Furrows")
 # st.markdown("##### :orange_heart: built using [phidata](https://github.com/phidatahq/phidata)")
 
 
@@ -79,7 +79,7 @@ def main() -> None:
     else:
         logger.debug("No chat history found")
         st.session_state["messages"] = [
-            {"role": "assistant", "content": "Upload a doc and ask me questions..."}]
+            {"role": "assistant", "content": ""}]
 
     # Prompt for user input
     if prompt := st.chat_input():

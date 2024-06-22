@@ -1,9 +1,12 @@
+from flask_cors import CORS, cross_origin
 from flask import Flask, request, jsonify
 # Make sure this import is correct based on your project structure
 from assistant import get_rag_assistant
 from phi.utils.log import logger
 port = 5200
+
 app = Flask(__name__)
+CORS(app)
 
 # Initialize the assistant (modify parameters as necessary)
 llm_model = "llama3"
@@ -13,10 +16,12 @@ rag_assistant = get_rag_assistant(
 
 
 @app.route('/', methods=['GET'])
+@cross_origin
 def getapp():
     return jsonify({"message": "FLASK APP RUNNING on port: 5200"})
 
 
+@cross_origin
 @app.route('/ask', methods=['POST'])
 def ask():
     data = request.get_json()
