@@ -1,25 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import "./App.css"
 
 function App() {
-  const [data, setData] = useState(null);
+  const [inputValue, setInputValue] = useState('');
   const [apiResponse, setApiResponse] = useState(null);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetch('http://localhost:8000/api/data')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => setData(data.message))
-      .catch(error => setError(error.message));
-  }, []);
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
 
   // Function to handle button click
   const handleClick = () => {
-    fetch('http://localhost:8000/api/llm')
+    const requestOptions = {
+      method: 'POST', // Setting the method to POST
+      headers: {
+        'Content-Type': 'application/json' // Specifying JSON content type
+      },
+      body: JSON.stringify({
+        prompt: inputValue
+      })
+    };
+
+    fetch('https://55b1-82-198-128-243.ngrok-free.app/ask', requestOptions)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -33,10 +36,20 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {error ? <p>Error: {error}</p> : <p>{data ? data : 'Loading...'}</p>}
-        {/* Button that calls handleClick when it is clicked */}
-        <button onClick={handleClick}>Click Me!</button>
-        {<p>Response: {apiResponse}</p>}
+        <div className="header-content">
+          <img src="/assets/furrows.png" alt="Logo" className="logo"/>  {/* Logo on the left */}
+          <button className="hamburger-menu">☰</button>
+        </div>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={handleInputChange}
+        placeholder="Location?"
+      />
+      <button onClick={handleClick}>Generate Report</button>
+        {error && <p>Error: {error}</p>} 
+        {apiResponse && <p>Response: {apiResponse}</p>}
+        {apiResponse && <p>fun</p>}
       </header>
     </div>
   );
